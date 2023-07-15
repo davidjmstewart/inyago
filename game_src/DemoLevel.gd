@@ -28,12 +28,12 @@ func _input(event: InputEvent) -> void:
 	var prop_is_being_placed = false
 	if (len(props)):
 		prop_is_being_placed = props.any(func (p): return p.get_interaction_state() == Types.PROP_INTERACTION_STATE.PLACING);		
-	print(prop_is_being_placed)
+
 	if (prop_is_being_placed):
 		return
 	if event is InputEventMouseButton and not (prop_is_being_placed or state == DRAWING_STATE.PROP_PLACEMENT):
 #	if event is InputEventMouseButton and not (state == DRAWING_STATE.PROP_PLACEMENT):
-		print(event)
+
 		if (event.pressed):
 			current_obstacle_scene = obstacle_scene.instantiate()
 			add_child(current_obstacle_scene)
