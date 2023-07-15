@@ -1,10 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmlh3ihumvnw1"]
+[gd_scene load_steps=7 format=3 uid="uid://cmlh3ihumvnw1"]
 
 [ext_resource type="Script" path="res://Spin2Win.gd" id="1_7qrya"]
 [ext_resource type="Texture2D" uid="uid://c7h6sg57rsfhg" path="res://assets/tiles/pixel_platformer_industrial/tile_0099.png" id="2_krlvc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oc16u"]
 radius = 9.0
+
+[sub_resource type="Animation" id="Animation_826ta"]
+resource_name = "spin2win"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.44051, -0.2, -0.331537, 0.2, 0.568348, 6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.1703, 3)
+}
+
+[sub_resource type="Animation" id="Animation_j2u2y"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5yc4y"]
+_data = {
+"RESET": SubResource("Animation_j2u2y"),
+"spin2win": SubResource("Animation_826ta")
+}
 
 [node name="Spin2Win" type="StaticBody2D"]
 position = Vector2(330, 205)
@@ -16,3 +52,8 @@ shape = SubResource("CircleShape2D_oc16u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_krlvc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5yc4y")
+}
