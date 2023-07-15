@@ -64,10 +64,10 @@ func _input(event: InputEvent) -> void:
 			
 func _on_button_pressed():
 	get_tree().paused = true
-	pass # Replace with function body.
-
 
 func _on_resume_pressed():
-	print('pressed')
 	get_tree().paused = false
-	pass # Replace with function body.
+
+
+func _on_restart_pressed():
+	get_tree().reload_current_scene()
