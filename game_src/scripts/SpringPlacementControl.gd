@@ -30,5 +30,5 @@ func _on_gui_input(event):
 
 
 func _on_mouse_entered():
-	set_default_cursor_shape(Control.CURSOR_POINTING_HAND  )
+	set_default_cursor_shape(Control.CURSOR_POINTING_HAND)
 	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbi05mdjbbmy3"]
+[gd_scene load_steps=21 format=3 uid="uid://cbi05mdjbbmy3"]
 
 [ext_resource type="Texture2D" uid="uid://bnl4ike8pqc2b" path="res://assets/textures/ball_red_large.png" id="1_c0d06"]
 [ext_resource type="Script" path="res://DemoLevel.gd" id="1_m40wg"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/SpringPlacementControl.gd" id="12_e61yt"]
 [ext_resource type="Texture2D" uid="uid://hehrk67m7xbu" path="res://assets/textures/pencils/pencil9.png" id="14_5hxm7"]
 [ext_resource type="Texture2D" uid="uid://e41okn4gw4li" path="res://assets/textures/pencils/pencil12.png" id="15_mh0ef"]
+[ext_resource type="Script" path="res://scripts/NormalPencilControl.gd" id="16_4p6el"]
 [ext_resource type="Script" path="res://scripts/TestHTTPButton.gd" id="17_0k1o0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dhx0a"]
@@ -26,6 +27,10 @@ radius = 20.025
 [node name="GameRoot" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_m40wg")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Ball" type="RigidBody2D" parent="."]
 position = Vector2(43, 378)
@@ -68,20 +73,23 @@ offset_bottom = 32.0
 text = "Restart"
 
 [node name="GameControls" type="Control" parent="."]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 928.0
+offset_top = -7.0
+offset_right = 1168.0
+offset_bottom = 512.0
 mouse_filter = 1
 
 [node name="GO_Button" type="TextureButton" parent="GameControls"]
 process_mode = 3
 z_index = 1
 layout_mode = 0
-offset_left = 921.0
-offset_top = 495.0
-offset_right = 1017.0
-offset_bottom = 532.0
+offset_left = -19.0
+offset_top = 454.0
+offset_right = 77.0
+offset_bottom = 486.0
 scale = Vector2(2, 2)
 mouse_filter = 1
 mouse_default_cursor_shape = 2
@@ -112,40 +120,42 @@ texture = ExtResource("10_87vx8")
 [node name="ControlsBackground" type="TextureRect" parent="GameControls"]
 z_index = -1
 layout_mode = 0
-offset_left = 916.0
-offset_top = 89.0
-offset_right = 1115.0
-offset_bottom = 567.0
+offset_left = -24.0
+offset_top = 48.0
+offset_right = 175.0
+offset_bottom = 526.0
 mouse_filter = 2
 texture = ExtResource("11_6nrda")
 
 [node name="Banner" type="Control" parent="GameControls"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 929.0
-offset_top = 93.0
-offset_right = 1114.0
-offset_bottom = 169.0
+offset_left = -11.0
+offset_top = 52.0
+offset_right = 174.0
+offset_bottom = 128.0
 mouse_filter = 1
 
 [node name="BannerTexture" type="TextureRect" parent="GameControls/Banner"]
 layout_mode = 0
-offset_left = -91.0
+offset_left = -131.0
 offset_top = -45.0
-offset_right = 275.0
-offset_bottom = 107.0
+offset_right = 304.0
+offset_bottom = 136.0
 texture = ExtResource("6_ikjn7")
 
 [node name="Label" type="Label" parent="GameControls/Banner"]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 29.0
-offset_right = 123.0
-offset_bottom = 55.0
+offset_left = 22.0
+offset_top = 30.0
+offset_right = 89.0
+offset_bottom = 56.0
+scale = Vector2(2, 2)
 text = "Controls"
 
 [node name="SpringSprite" type="Sprite2D" parent="GameControls"]
-position = Vector2(968, 202)
+process_mode = 3
+position = Vector2(33, 180)
 scale = Vector2(2.28947, 2.28947)
 texture = ExtResource("12_d6emw")
 hframes = 20
@@ -160,16 +170,28 @@ offset_top = -2.0
 offset_right = 10.0
 offset_bottom = 11.0
 script = ExtResource("12_e61yt")
+metadata/_edit_use_anchors_ = true
 
 [node name="StickyPencilSprite" type="Sprite2D" parent="GameControls"]
-position = Vector2(965, 377)
-scale = Vector2(1.38462, 1.38462)
-texture = ExtResource("14_5hxm7")
-
-[node name="StickyPencilSprite2" type="Sprite2D" parent="GameControls"]
+visible = false
 position = Vector2(965, 332)
 scale = Vector2(1.38462, 1.38462)
 texture = ExtResource("15_mh0ef")
+
+[node name="NormalPencilSprite" type="Sprite2D" parent="GameControls"]
+position = Vector2(25, 336)
+scale = Vector2(1.38462, 1.38462)
+texture = ExtResource("14_5hxm7")
+
+[node name="NormalPencilControl" type="Control" parent="GameControls/NormalPencilSprite"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -17.0
+offset_top = -18.0
+offset_right = 89.0
+offset_bottom = 19.0
+mouse_default_cursor_shape = 2
+script = ExtResource("16_4p6el")
 
 [node name="AudioListener" type="AudioListener2D" parent="."]
 position = Vector2(568, 348)
@@ -193,7 +215,13 @@ script = ExtResource("17_0k1o0")
 [connection signal="pressed" from="Pause" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="mouse_entered" from="GameControls" to="." method="_on_game_controls_mouse_entered"]
+[connection signal="mouse_exited" from="GameControls" to="." method="_on_game_controls_mouse_exited"]
 [connection signal="pressed" from="GameControls/GO_Button" to="." method="_on_go_button_pressed"]
 [connection signal="gui_input" from="GameControls/SpringSprite/SpringPlacementControl" to="GameControls/SpringSprite/SpringPlacementControl" method="_on_gui_input"]
+[connection signal="mouse_entered" from="GameControls/SpringSprite/SpringPlacementControl" to="." method="_on_spring_placement_control_mouse_entered"]
 [connection signal="mouse_entered" from="GameControls/SpringSprite/SpringPlacementControl" to="GameControls/SpringSprite/SpringPlacementControl" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GameControls/SpringSprite/SpringPlacementControl" to="." method="_on_spring_placement_control_mouse_exited"]
+[connection signal="gui_input" from="GameControls/NormalPencilSprite/NormalPencilControl" to="GameControls/NormalPencilSprite/NormalPencilControl" method="_on_gui_input"]
+[connection signal="normal_pencil_clicked" from="GameControls/NormalPencilSprite/NormalPencilControl" to="." method="_on_normal_pencil_control_normal_pencil_clicked"]
 [connection signal="pressed" from="TestHTTPButton" to="TestHTTPButton" method="_on_pressed"]
