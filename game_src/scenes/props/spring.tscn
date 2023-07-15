@@ -47,38 +47,38 @@ _data = {
 scale = Vector2(3, 3)
 script = ExtResource("1_5cdqg")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="SpringArea" type="Area2D" parent="."]
 script = ExtResource("2_k478r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpringArea"]
 position = Vector2(0, 3.83333)
 shape = SubResource("RectangleShape2D_bo4y8")
 
-[node name="SpringSprite" type="Sprite2D" parent="Area2D"]
+[node name="SpringSprite" type="Sprite2D" parent="SpringArea"]
 texture = ExtResource("3_5tv2t")
 hframes = 20
 vframes = 9
 frame = 107
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpringArea"]
 libraries = {
 "": SubResource("AnimationLibrary_8c5ko")
 }
 
-[node name="Raycasts" type="Node2D" parent="."]
+[node name="RayCasts" type="Node2D" parent="."]
 
-[node name="RayCastDown" type="RayCast2D" parent="Raycasts"]
+[node name="RayCastDown" type="RayCast2D" parent="RayCasts"]
 target_position = Vector2(-16.6667, 0)
 
-[node name="RayCastLeft" type="RayCast2D" parent="Raycasts"]
+[node name="RayCastLeft" type="RayCast2D" parent="RayCasts"]
 target_position = Vector2(0, 16.6667)
 
-[node name="RayCastRight" type="RayCast2D" parent="Raycasts"]
+[node name="RayCastRight" type="RayCast2D" parent="RayCasts"]
 target_position = Vector2(14.6667, 0)
 
-[node name="RayCastUp" type="RayCast2D" parent="Raycasts"]
+[node name="RayCastUp" type="RayCast2D" parent="RayCasts"]
 position = Vector2(0, 0.333333)
 target_position = Vector2(0, -9.66667)
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="SpringArea" to="SpringArea" method="_on_body_entered"]
+[connection signal="body_exited" from="SpringArea" to="SpringArea" method="_on_body_exited"]
