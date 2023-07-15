@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbi05mdjbbmy3"]
+[gd_scene load_steps=17 format=3 uid="uid://cbi05mdjbbmy3"]
 
 [ext_resource type="Texture2D" uid="uid://bnl4ike8pqc2b" path="res://assets/textures/ball_red_large.png" id="1_c0d06"]
 [ext_resource type="Script" path="res://DemoLevel.gd" id="1_m40wg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ij8n2wbc3vbm" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a1.png" id="6_2pxlb"]
 [ext_resource type="Texture2D" uid="uid://g27i3erdwciq" path="res://assets/textures/buttons/paper/UI_Paper_Banner_01_Downward.png" id="6_ikjn7"]
 [ext_resource type="Texture2D" uid="uid://rfhdb17x2m7k" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a2.png" id="7_amcfp"]
+[ext_resource type="AudioStream" uid="uid://c0dlktkk7j6o6" path="res://assets/audio/music/testtrack_loop.wav" id="7_v14mf"]
 [ext_resource type="Texture2D" uid="uid://c4t6vcg6ysqn8" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a3.png" id="8_0fsme"]
 [ext_resource type="Texture2D" uid="uid://di7cp2ap18ytr" path="res://assets/textures/buttons/paper/UI_Paper_Checkmark_Standard.png" id="10_87vx8"]
 [ext_resource type="Texture2D" uid="uid://byp0lyk6ufldf" path="res://assets/textures/buttons/paper/UI_Paper_Frame_01_Vertical.png" id="11_6nrda"]
@@ -24,7 +25,7 @@ process_mode = 3
 script = ExtResource("1_m40wg")
 
 [node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2(529, 116)
+position = Vector2(43, 378)
 script = ExtResource("2_fn7ww")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
@@ -53,7 +54,7 @@ offset_bottom = 31.0
 text = "Resume"
 
 [node name="SpringRoot" parent="." instance=ExtResource("4_dwf4t")]
-position = Vector2(527, 176)
+position = Vector2(41, 438)
 interaction_state = 1
 
 [node name="Restart" type="Button" parent="."]
@@ -154,6 +155,15 @@ offset_top = -2.0
 offset_right = 10.0
 offset_bottom = 11.0
 script = ExtResource("12_e61yt")
+
+[node name="AudioListener" type="AudioListener2D" parent="."]
+position = Vector2(568, 348)
+current = true
+
+[node name="MusicStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_v14mf")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Pause" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]

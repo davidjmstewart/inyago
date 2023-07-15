@@ -1,0 +1,29 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://bqj21u821ysk8"]
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_x5m2b"]
+resource_name = "Amplify"
+volume_db = 12.0
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_12qsj"]
+resource_name = "Compressor"
+threshold = -15.5
+release_ms = 110.0
+sidechain = &"SFX"
+
+[resource]
+bus/1/name = &"SFX"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectAmplify_x5m2b")
+bus/1/effect/0/enabled = true
+bus/2/name = &"Music"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = -5.93075
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectCompressor_12qsj")
+bus/2/effect/0/enabled = true

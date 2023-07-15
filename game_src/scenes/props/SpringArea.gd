@@ -12,6 +12,7 @@ func _on_body_entered(body):
 	print(body.name)
 	if body.name == "Ball":
 		$AnimationPlayer.play("active")
+		$"../SpringSound".play()
 		if (get_parent().get_spring_state() == Types.PROP_INTERACTION_STATE.PLACED):
 			var velocity: Vector2 = body.linear_velocity;
 			var magnitude = velocity.length()
