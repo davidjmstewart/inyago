@@ -20,7 +20,7 @@ var sprite_9 = preload("res://assets/tiles/pixel_platformer/tile_0169.png")
 @onready var separator_1 = get_node("Separator1")
 @onready var separator_2 = get_node("Separator2")
 
-var time_elapsed = 0.0
+@export var time_elapsed = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

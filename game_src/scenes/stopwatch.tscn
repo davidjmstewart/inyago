@@ -6,44 +6,45 @@
 
 [node name="Node2D" type="Node2D"]
 process_mode = 1
+position = Vector2(96, 64)
 script = ExtResource("1_wk77k")
 
 [node name="Milliseconds1" type="Sprite2D" parent="."]
-position = Vector2(544, 74)
+position = Vector2(245, 17)
 scale = Vector2(3, 3)
 texture = ExtResource("2_1ay4o")
 
 [node name="Milliseconds2" type="Sprite2D" parent="."]
-position = Vector2(513, 74)
+position = Vector2(214, 17)
 scale = Vector2(3, 3)
 texture = ExtResource("2_1ay4o")
 
 [node name="Separator1" type="Sprite2D" parent="."]
-position = Vector2(486, 72)
+position = Vector2(187, 15)
 scale = Vector2(2, 2)
 texture = ExtResource("3_qtdru")
 
 [node name="Seconds1" type="Sprite2D" parent="."]
-position = Vector2(460, 76)
+position = Vector2(161, 19)
 scale = Vector2(3, 3)
 texture = ExtResource("2_1ay4o")
 
 [node name="Seconds2" type="Sprite2D" parent="."]
-position = Vector2(426, 76)
+position = Vector2(127, 19)
 scale = Vector2(3, 3)
 texture = ExtResource("2_1ay4o")
 
 [node name="Separator2" type="Sprite2D" parent="."]
-position = Vector2(396, 73)
+position = Vector2(97, 16)
 scale = Vector2(2, 2)
 texture = ExtResource("3_qtdru")
 
 [node name="Minutes1" type="Sprite2D" parent="."]
-position = Vector2(368, 78)
+position = Vector2(69, 21)
 scale = Vector2(3, 3)
 texture = ExtResource("2_1ay4o")
 
 [node name="Minutes2" type="Sprite2D" parent="."]
-position = Vector2(335, 79)
+position = Vector2(36, 22)
 scale = Vector2(3, 3)
 texture = ExtResource("2_1ay4o")

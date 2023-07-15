@@ -1,8 +1,6 @@
-extends StaticBody2D
+extends Area2D
 
-var speed = 400
-var angular_speed = PI
-
+var default_gravity = Vector2(0,-1)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -10,4 +8,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#rotation += angular_speed * delta
+	gravity_direction = default_gravity.rotated(rotation)
+#	print(basis)
