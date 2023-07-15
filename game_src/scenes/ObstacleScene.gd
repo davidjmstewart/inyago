@@ -57,6 +57,6 @@ func set_drawing_still_in_progress(state: bool):
 		
 func _draw():
 	for op in self.obstacle_points:
-#		pass
-		draw_line(op.from, op.to, Color.RED, 10, true)
+		var colour = Color.DARK_MAGENTA if op.get_obstacle_type() == Types.DRAWABLE_OBSTACLE_TYPES.STICKY else Color.DARK_GREEN;
+		draw_line(op.from, op.to, colour, 10, true)
 	pass
