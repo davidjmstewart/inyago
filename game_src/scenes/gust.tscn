@@ -2,9 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://rxp5f4j6tno1" path="res://assets/tiles/pixel_platformer_industrial/tile_0059.png" id="1_1whfo"]
 [ext_resource type="Script" path="res://scripts/gust.gd" id="1_404kj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vqq0"]
-size = Vector2(12, 18)
+[ext_resource type="Script" path="res://scripts/GustArea.gd" id="2_ahbhc"]
 
 [sub_resource type="Gradient" id="Gradient_pmo0l"]
 offsets = PackedFloat32Array(0.112583, 0.94702)
@@ -13,21 +11,20 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.160784)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a45j"]
 size = Vector2(12, 29)
 
-[node name="Gust" type="Area2D"]
+[node name="Gust" type="Node2D"]
+process_mode = 3
 position = Vector2(90, 130)
 scale = Vector2(3, 3)
+script = ExtResource("1_404kj")
+
+[node name="GustArea" type="Area2D" parent="."]
+process_mode = 3
 gravity_space_override = 3
 gravity_point_center = Vector2(0, -1)
 gravity_direction = Vector2(0, -1)
-script = ExtResource("1_404kj")
+script = ExtResource("2_ahbhc")
 
-[node name="CollisionPipe" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_2vqq0")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_1whfo")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="GustArea"]
 position = Vector2(1, -15)
 amount = 10
 lifetime = 0.2
@@ -38,6 +35,24 @@ particle_flag_align_y = true
 gravity = Vector2(0, -980)
 color_ramp = SubResource("Gradient_pmo0l")
 
-[node name="WindCollision" type="CollisionShape2D" parent="."]
+[node name="WindCollision" type="CollisionShape2D" parent="GustArea"]
 position = Vector2(0, -23.5)
 shape = SubResource("RectangleShape2D_2a45j")
+
+[node name="PipeSprite" type="Sprite2D" parent="GustArea"]
+texture = ExtResource("1_1whfo")
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="RayCastDown" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(-16.6667, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(0, 16.6667)
+
+[node name="RayCastRight" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(14.6667, 0)
+
+[node name="RayCastUp" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, 0.333333)
+target_position = Vector2(0, -13.6667)

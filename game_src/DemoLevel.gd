@@ -94,6 +94,7 @@ func _on_normal_pencil_control_normal_pencil_clicked():
 	state = DRAWING_STATE.RELEASED;
 
 func _on_game_controls_mouse_entered():
+	print('entered')
 	invalid_drawing_start_location = true
 
 func _on_game_controls_mouse_exited():

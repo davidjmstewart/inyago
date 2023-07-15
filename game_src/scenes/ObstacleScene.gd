@@ -51,9 +51,9 @@ func set_drawing_still_in_progress(state: bool):
 			query.hit_from_inside = true
 			var result = space_state.intersect_ray(query)
 			if (result):
+#				print('reparenting to', result.collider)
 				self.reparent(result.collider)
-				print(result.collider)
-		pass
+				break
 		
 func _draw():
 	for op in self.obstacle_points:
