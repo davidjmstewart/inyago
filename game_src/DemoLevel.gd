@@ -10,7 +10,6 @@ var obstacle_scene = load("res://scenes/ObstacleScene.tscn");
 var state: DRAWING_STATE = DRAWING_STATE.RELEASED;
 var current_drawing_type: Types.DRAWABLE_OBSTACLE_TYPES = Types.DRAWABLE_OBSTACLE_TYPES.NORMAL;
 
-
 var obstacle_points: Array[Obstacle];
 var obstacle_scenes: Array = []; # Array of ObstacleScenes
 var from: Vector2;
@@ -50,9 +49,10 @@ func _input(event: InputEvent) -> void:
 				state = DRAWING_STATE.RELEASED
 				to = event.position;
 				to =  get_local_mouse_position()
-				var ob = Obstacle.new(from, to, Types.DRAWABLE_OBSTACLE_TYPES.NORMAL);
+				var ob = Obstacle.new(from, to, current_drawing_type);
 				obstacle_points.append(ob);
 				current_obstacle_scene.set_points(obstacle_points)
+				current_obstacle_scene.set_drawing_still_in_progress(false)
 				obstacle_points=[]
 				current_obstacle_scene = null;
 			
@@ -65,7 +65,7 @@ func _input(event: InputEvent) -> void:
 				return
 			to = event.position;
 			to =  get_local_mouse_position()
-			var ob = Obstacle.new(from, to, Types.DRAWABLE_OBSTACLE_TYPES.NORMAL)
+			var ob = Obstacle.new(from, to, current_drawing_type)
 			obstacle_points.append(ob);
 			from = to;
 			current_obstacle_scene.set_points(obstacle_points)
@@ -89,6 +89,7 @@ func _on_spring_placement_control_mouse_exited():
 	invalid_drawing_start_location = false
 
 func _on_normal_pencil_control_normal_pencil_clicked():
+	current_drawing_type = Types.DRAWABLE_OBSTACLE_TYPES.NORMAL
 	var invalid_drawing_start_location = false;
 	state = DRAWING_STATE.RELEASED;
 
@@ -97,3 +98,7 @@ func _on_game_controls_mouse_entered():
 
 func _on_game_controls_mouse_exited():
 	invalid_drawing_start_location = false
+
+func _on_sticky_pencil_control_sticky_pencil_clicked():
+	current_drawing_type = Types.DRAWABLE_OBSTACLE_TYPES.STICKY
+	pass # Replace with function body.

@@ -1,7 +1,6 @@
 extends Control
 
-signal normal_pencil_clicked
-#signal spring_placed
+signal sticky_pencil_clicked
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -11,8 +10,7 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func _on_gui_input(event):
 	if event is InputEventMouseButton:
 		if (event.pressed):
-			normal_pencil_clicked.emit()
+			sticky_pencil_clicked.emit()
