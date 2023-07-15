@@ -74,6 +74,7 @@ mouse_filter = 1
 [node name="GO_Button" type="TextureButton" parent="GameControls"]
 process_mode = 3
 z_index = 1
+layout_mode = 0
 offset_left = 921.0
 offset_top = 495.0
 offset_right = 1017.0
@@ -107,6 +108,7 @@ texture = ExtResource("10_87vx8")
 
 [node name="ControlsBackground" type="TextureRect" parent="GameControls"]
 z_index = -1
+layout_mode = 0
 offset_left = 916.0
 offset_top = 89.0
 offset_right = 1115.0
