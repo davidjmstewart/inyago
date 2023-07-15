@@ -16,6 +16,7 @@ var current_obstacle_scene;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().paused = true
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,3 +74,8 @@ func _on_resume_pressed():
 
 func _on_restart_pressed():
 	get_tree().reload_current_scene()
+
+
+func _on_go_button_pressed():
+	get_tree().paused = false
+	pass # Replace with function body.

@@ -68,14 +68,18 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="GO_Button" type="TextureButton" parent="GameControls"]
-layout_mode = 0
+process_mode = 3
+z_index = 1
 offset_left = 921.0
 offset_top = 495.0
 offset_right = 1017.0
 offset_bottom = 532.0
 scale = Vector2(2, 2)
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_2pxlb")
 texture_pressed = ExtResource("8_0fsme")
 texture_hover = ExtResource("7_amcfp")
@@ -84,8 +88,9 @@ texture_hover = ExtResource("7_amcfp")
 layout_mode = 0
 offset_left = 36.0
 offset_top = 3.0
-offset_right = 72.0
+offset_right = 61.0
 offset_bottom = 29.0
+mouse_filter = 1
 theme = SubResource("Theme_mo81q")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "GO"
@@ -101,19 +106,21 @@ texture = ExtResource("10_87vx8")
 
 [node name="ControlsBackground" type="TextureRect" parent="GameControls"]
 z_index = -1
-layout_mode = 0
 offset_left = 916.0
 offset_top = 89.0
 offset_right = 1115.0
 offset_bottom = 567.0
+mouse_filter = 2
 texture = ExtResource("11_6nrda")
 
 [node name="Banner" type="Control" parent="GameControls"]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 929.0
 offset_top = 93.0
 offset_right = 1114.0
 offset_bottom = 169.0
+mouse_filter = 1
 
 [node name="BannerTexture" type="TextureRect" parent="GameControls/Banner"]
 layout_mode = 0
@@ -151,5 +158,6 @@ script = ExtResource("12_e61yt")
 [connection signal="pressed" from="Pause" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameControls/GO_Button" to="." method="_on_go_button_pressed"]
 [connection signal="gui_input" from="GameControls/SpringSprite/SpringPlacementControl" to="GameControls/SpringSprite/SpringPlacementControl" method="_on_gui_input"]
 [connection signal="mouse_entered" from="GameControls/SpringSprite/SpringPlacementControl" to="GameControls/SpringSprite/SpringPlacementControl" method="_on_mouse_entered"]
