@@ -149,7 +149,7 @@ offset_right = 304.0
 offset_bottom = 136.0
 texture = ExtResource("6_ikjn7")
 
-[node name="Label" type="Label" parent="GameControls/Banner"]
+[node name="BannerText" type="Label" parent="GameControls/Banner"]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 30.0
@@ -177,6 +177,16 @@ offset_bottom = 11.0
 script = ExtResource("12_e61yt")
 metadata/_edit_use_anchors_ = true
 
+[node name="Label" type="Label" parent="GameControls/SpringSprite/SpringPlacementControl"]
+layout_mode = 0
+offset_left = 24.1035
+offset_top = -2.80461
+offset_right = 74.1035
+offset_bottom = 23.1954
+scale = Vector2(0.665, 0.665)
+text = "Spring
+"
+
 [node name="StickyPencilSprite" type="Sprite2D" parent="GameControls"]
 position = Vector2(27, 388)
 scale = Vector2(1.38462, 1.38462)
@@ -192,6 +202,13 @@ offset_bottom = 19.0
 mouse_default_cursor_shape = 2
 script = ExtResource("16_upbbh")
 
+[node name="Sticky" type="Label" parent="GameControls/StickyPencilSprite/StickyPencilControl"]
+offset_left = 37.4999
+offset_top = 4.72229
+offset_right = 96.4999
+offset_bottom = 32.7223
+text = "Sticky"
+
 [node name="NormalPencilSprite" type="Sprite2D" parent="GameControls"]
 position = Vector2(25, 336)
 scale = Vector2(1.38462, 1.38462)
@@ -206,6 +223,13 @@ offset_right = 89.0
 offset_bottom = 19.0
 mouse_default_cursor_shape = 2
 script = ExtResource("16_4p6el")
+
+[node name="Normal" type="Label" parent="GameControls/NormalPencilSprite/NormalPencilControl"]
+offset_left = 36.4999
+offset_top = 5.00006
+offset_right = 95.4999
+offset_bottom = 33.0001
+text = "Normal"
 
 [node name="AudioListener" type="AudioListener2D" parent="."]
 position = Vector2(568, 348)
