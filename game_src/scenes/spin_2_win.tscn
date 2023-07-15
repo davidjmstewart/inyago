@@ -45,7 +45,6 @@ _data = {
 
 [node name="Spin2Win" type="StaticBody2D"]
 position = Vector2(330, 205)
-rotation = 2.31851
 scale = Vector2(6, 6)
 script = ExtResource("1_7qrya")
 
@@ -56,6 +55,7 @@ shape = SubResource("CircleShape2D_oc16u")
 texture = ExtResource("2_krlvc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_5yc4y")
 }

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bnl4ike8pqc2b" path="res://assets/textures/ball_red_large.png" id="1_c0d06"]
 [ext_resource type="Script" path="res://DemoLevel.gd" id="1_m40wg"]
 [ext_resource type="Script" path="res://Ball.gd" id="2_fn7ww"]
-[ext_resource type="PackedScene" uid="uid://ct3rcjcmf4trl" path="res://scenes/spin_2_win.tscn" id="2_ys1u7"]
+[ext_resource type="PackedScene" uid="uid://cmlh3ihumvnw1" path="res://scenes/spin_2_win.tscn" id="2_ys1u7"]
 [ext_resource type="PackedScene" uid="uid://l11vx11p2myj" path="res://scenes/trees/TreeTypeA.tscn" id="3_wrths"]
 [ext_resource type="PackedScene" uid="uid://y4eybjy6i82l" path="res://scenes/props/spring.tscn" id="4_dwf4t"]
 [ext_resource type="Texture2D" uid="uid://ij8n2wbc3vbm" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a1.png" id="6_2pxlb"]
