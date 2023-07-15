@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmlh3ihumvnw1"]
+
+[ext_resource type="Script" path="res://Spin2Win.gd" id="1_7qrya"]
+[ext_resource type="Texture2D" uid="uid://c7h6sg57rsfhg" path="res://assets/tiles/pixel_platformer_industrial/tile_0099.png" id="2_krlvc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oc16u"]
+radius = 9.0
+
+[node name="Spin2Win" type="StaticBody2D"]
+position = Vector2(330, 205)
+scale = Vector2(6, 6)
+script = ExtResource("1_7qrya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oc16u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_krlvc")
