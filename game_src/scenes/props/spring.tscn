@@ -43,7 +43,7 @@ _data = {
 "active": SubResource("Animation_u054k")
 }
 
-[node name="SpringRoot" type="Node2D"]
+[node name="SpringRoot" type="Node2D" groups=["Prop", "Serialisable", "SpringScene"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_5cdqg")
 
