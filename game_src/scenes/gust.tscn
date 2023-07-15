@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5k8l2kclnrg"]
+[gd_scene load_steps=7 format=3 uid="uid://c5k8l2kclnrg"]
 
 [ext_resource type="Texture2D" uid="uid://rxp5f4j6tno1" path="res://assets/tiles/pixel_platformer_industrial/tile_0059.png" id="1_1whfo"]
 [ext_resource type="Script" path="res://scripts/gust.gd" id="1_404kj"]
@@ -10,6 +10,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.160784)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a45j"]
 size = Vector2(12, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsi60"]
 
 [node name="Gust" type="Node2D"]
 process_mode = 3
@@ -56,3 +58,9 @@ target_position = Vector2(14.6667, 0)
 [node name="RayCastUp" type="RayCast2D" parent="RayCasts"]
 position = Vector2(0, 0.333333)
 target_position = Vector2(0, -13.6667)
+
+[node name="GustStaticBody" type="StaticBody2D" parent="."]
+
+[node name="GustStaticBodyCollision" type="CollisionShape2D" parent="GustStaticBody"]
+shape = SubResource("RectangleShape2D_hsi60")
+debug_color = Color(0.898039, 0.227451, 0.54902, 0.419608)
