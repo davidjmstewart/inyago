@@ -110,4 +110,7 @@ func _on_sticky_pencil_control_sticky_pencil_clicked():
 
 func _on_objective_area_body_entered(body):
 	print('game over')
+	get_tree().paused = true
+	$Ball.freeze = false;
+	$Ball/Camera2D.zoom = Vector2(2,2)
 	pass # Replace with function body.
