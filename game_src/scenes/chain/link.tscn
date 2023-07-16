@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bolyyuo1l7sc6"]
+
+[node name="PinJoint2D" type="PinJoint2D"]
+bias = 0.9
+disable_collision = false
+softness = 0.1
