@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://l11vx11p2myj"]
+[gd_scene load_steps=13 format=3 uid="uid://l11vx11p2myj"]
 
+[ext_resource type="Texture2D" uid="uid://dwksume06ymef" path="res://assets/tiles/pixel_platformer/tile_0098.png" id="1_8ctpb"]
 [ext_resource type="Texture2D" uid="uid://c72k747ad8ccx" path="res://assets/tiles/pixel_platformer/tile_0137.png" id="1_iia5e"]
 [ext_resource type="Texture2D" uid="uid://dmogosh471h00" path="res://assets/tiles/pixel_platformer/tile_0136.png" id="2_gqyvu"]
 [ext_resource type="Texture2D" uid="uid://c04o5mgt6131c" path="res://assets/tiles/pixel_platformer/tile_0096.png" id="3_byjnk"]
@@ -24,7 +25,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector2(0, 0), Vector2(0, 1)]
 }
 tracks/1/type = "value"
@@ -39,6 +40,54 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TreeBody/branch stub:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TreeBody/branch stub:flip_v")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TreeBody/branch stub:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17.5, -18)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TreeBody/branch stub:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_epdgh"]
 resource_name = "tree-bob"
@@ -50,10 +99,58 @@ tracks/0/path = NodePath("TreeBody/Node2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 1)]
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("TreeBody/branch stub:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("TreeBody/branch stub:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TreeBody/branch stub:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TreeBody/branch stub:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b35n4"]
@@ -67,6 +164,16 @@ position = Vector2(496, 530)
 scale = Vector2(4, 4)
 
 [node name="TreeBody" type="StaticBody2D" parent="."]
+
+[node name="branch stub" type="Sprite2D" parent="TreeBody"]
+position = Vector2(-17.5, -18)
+texture = ExtResource("1_8ctpb")
+flip_v = true
+
+[node name="branch stub2" type="Sprite2D" parent="TreeBody"]
+position = Vector2(17.5, -36)
+texture = ExtResource("1_8ctpb")
+flip_h = true
 
 [node name="TrunkCollision" type="CollisionShape2D" parent="TreeBody"]
 position = Vector2(0, -35.5)
@@ -85,12 +192,13 @@ texture = ExtResource("2_gqyvu")
 flip_h = true
 
 [node name="TreeSection3" type="Sprite2D" parent="TreeBody"]
-position = Vector2(0, -54)
+position = Vector2(0, -55.5)
+scale = Vector2(1, 1.19444)
 texture = ExtResource("3_byjnk")
 flip_h = true
 
 [node name="TreeSection4" type="Sprite2D" parent="TreeBody"]
-position = Vector2(0, -72.3977)
+position = Vector2(0.5, -75.25)
 texture = ExtResource("4_v12v2")
 flip_h = true
 
@@ -145,7 +253,7 @@ rotation = 1.5708
 texture = ExtResource("6_82nr0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "RESET"
+autoplay = "tree-bob"
 libraries = {
 "": SubResource("AnimationLibrary_b35n4")
 }
