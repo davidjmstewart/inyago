@@ -9,7 +9,7 @@ offsets = PackedFloat32Array(0.112583, 0.94702)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.160784)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a45j"]
-size = Vector2(12, 29)
+size = Vector2(12, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hsi60"]
 
@@ -21,9 +21,10 @@ script = ExtResource("1_404kj")
 
 [node name="GustArea" type="Area2D" parent="."]
 process_mode = 3
-gravity_space_override = 3
+gravity_space_override = 1
 gravity_point_center = Vector2(0, -1)
 gravity_direction = Vector2(0, -1)
+gravity = 3008.5
 script = ExtResource("2_ahbhc")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="GustArea"]
@@ -38,7 +39,7 @@ gravity = Vector2(0, -980)
 color_ramp = SubResource("Gradient_pmo0l")
 
 [node name="WindCollision" type="CollisionShape2D" parent="GustArea"]
-position = Vector2(0, -23.5)
+position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_2a45j")
 
 [node name="PipeSprite" type="Sprite2D" parent="GustArea"]
@@ -60,6 +61,8 @@ position = Vector2(0, 0.333333)
 target_position = Vector2(0, -13.6667)
 
 [node name="GustStaticBody" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="GustStaticBodyCollision" type="CollisionShape2D" parent="GustStaticBody"]
 shape = SubResource("RectangleShape2D_hsi60")

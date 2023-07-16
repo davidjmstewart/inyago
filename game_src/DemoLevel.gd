@@ -19,7 +19,8 @@ var current_obstacle_scene;
 var invalid_drawing_start_location = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_tree().paused = true
+#	get_tree().paused = true
+	$Ball/Camera2D.enabled = false
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -81,6 +82,9 @@ func _on_restart_pressed():
 
 func _on_go_button_pressed():
 	get_tree().paused = false
+	$Ball.freeze = false;
+	$Ball/Camera2D.enabled = true
+	$GameControls.queue_free()
 
 func _on_spring_placement_control_mouse_entered():
 	invalid_drawing_start_location = true
@@ -101,4 +105,9 @@ func _on_game_controls_mouse_exited():
 
 func _on_sticky_pencil_control_sticky_pencil_clicked():
 	current_drawing_type = Types.DRAWABLE_OBSTACLE_TYPES.STICKY
+	pass # Replace with function body.
+
+
+func _on_objective_area_body_entered(body):
+	print('game over')
 	pass # Replace with function body.

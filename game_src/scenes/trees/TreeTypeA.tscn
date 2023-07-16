@@ -74,7 +74,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-17.5, -18)]
+"values": [Vector2(-16.75, -28)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -135,10 +135,10 @@ tracks/3/path = NodePath("TreeBody/branch stub:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": []
+"values": [Vector2(-17, -28), Vector2(-16.75, -28.25)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -166,7 +166,7 @@ scale = Vector2(4, 4)
 [node name="TreeBody" type="StaticBody2D" parent="."]
 
 [node name="branch stub" type="Sprite2D" parent="TreeBody"]
-position = Vector2(-17.5, -18)
+position = Vector2(-16.75, -28)
 texture = ExtResource("1_8ctpb")
 flip_v = true
 

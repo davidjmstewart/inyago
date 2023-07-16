@@ -9,5 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	gravity_direction = default_gravity.rotated(rotation)
+	gravity_direction = default_gravity.rotated(get_parent().rotation)
 #	print(basis)

@@ -46,7 +46,7 @@ func set_points(obstacle_points: Array[Obstacle]) -> void:
 		collisionSegment.position = op.from
 		collisionSegment.rotation = (op.from - op.to).angle()
 
-
+#
 #		collisionSegment.shape = SegmentShape2D.new();
 #		collisionSegment.shape.a = op.from;
 #		collisionSegment.shape.b = op.to;
@@ -69,9 +69,11 @@ func set_drawing_still_in_progress(state: bool):
 			var to = obstacle.to;
 			var query = PhysicsRayQueryParameters2D.create(from, to)
 			query.hit_from_inside = true
+			query.exclude = [self, $StaticBody2D]
 			var result = space_state.intersect_ray(query)
 			if (result):
 				print('reparenting')
+
 #				print('reparenting to', result.collider)
 				self.reparent(result.collider)
 				return
