@@ -1,16 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://cbi05mdjbbmy3"]
+[gd_scene load_steps=45 format=3 uid="uid://cbi05mdjbbmy3"]
 
-[ext_resource type="Texture2D" uid="uid://bnl4ike8pqc2b" path="res://assets/textures/ball_red_large.png" id="1_c0d06"]
 [ext_resource type="Script" path="res://DemoLevel.gd" id="1_m40wg"]
-[ext_resource type="Script" path="res://Ball.gd" id="2_fn7ww"]
 [ext_resource type="Texture2D" uid="uid://dvlw2nsdvv6sb" path="res://assets/backgrounds/backgroundColorForest.png" id="2_ns0vt"]
 [ext_resource type="PackedScene" uid="uid://cmlh3ihumvnw1" path="res://scenes/spin_2_win.tscn" id="2_ys1u7"]
 [ext_resource type="PackedScene" uid="uid://dkds0pqcbvt4c" path="res://scenes/grass_platform.tscn" id="3_b8fvv"]
 [ext_resource type="PackedScene" uid="uid://l11vx11p2myj" path="res://scenes/trees/TreeTypeA.tscn" id="4_hqjeh"]
 [ext_resource type="Texture2D" uid="uid://ij8n2wbc3vbm" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a1.png" id="6_2pxlb"]
+[ext_resource type="PackedScene" uid="uid://boncewt3ysok" path="res://scenes/ball.tscn" id="6_8crjh"]
 [ext_resource type="Texture2D" uid="uid://g27i3erdwciq" path="res://assets/textures/buttons/paper/UI_Paper_Banner_01_Downward.png" id="6_ikjn7"]
 [ext_resource type="Texture2D" uid="uid://rfhdb17x2m7k" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a2.png" id="7_amcfp"]
-[ext_resource type="AudioStream" uid="uid://c0dlktkk7j6o6" path="res://assets/audio/music/testtrack_loop.wav" id="7_v14mf"]
 [ext_resource type="Texture2D" uid="uid://c4t6vcg6ysqn8" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a3.png" id="8_0fsme"]
 [ext_resource type="Texture2D" uid="uid://di7cp2ap18ytr" path="res://assets/textures/buttons/paper/UI_Paper_Checkmark_Standard.png" id="10_87vx8"]
 [ext_resource type="Texture2D" uid="uid://byp0lyk6ufldf" path="res://assets/textures/buttons/paper/UI_Paper_Frame_01_Vertical.png" id="11_6nrda"]
@@ -25,9 +23,19 @@
 [ext_resource type="Script" path="res://scripts/GustControl.gd" id="16_c8gnu"]
 [ext_resource type="Script" path="res://scripts/StickyPencilControl.gd" id="16_upbbh"]
 [ext_resource type="Script" path="res://scripts/TestHTTPButton.gd" id="17_0k1o0"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dhx0a"]
-radius = 20.025
+[ext_resource type="AudioStream" uid="uid://bn758ojxt0xym" path="res://assets/audio/sfx/sx_fan_loop_01.wav" id="19_cx8pm"]
+[ext_resource type="Script" path="res://scripts/ObjectiveArea.gd" id="26_44bpn"]
+[ext_resource type="AudioStream" uid="uid://c7f77miyeketc" path="res://assets/audio/sfx/sx_win_01.wav" id="26_ptqov"]
+[ext_resource type="Script" path="res://SoundManager.gd" id="27_80gow"]
+[ext_resource type="AudioStream" uid="uid://ho1nq0wrddqb" path="res://assets/audio/sfx/sx_ball_collision_tree_soft_01.wav" id="28_hmkdo"]
+[ext_resource type="AudioStream" uid="uid://bnojtgcmab1qh" path="res://assets/audio/sfx/sx_ball_collision_tree_medium_01.wav" id="29_1gbar"]
+[ext_resource type="AudioStream" uid="uid://3r3ax578qphe" path="res://assets/audio/sfx/sx_ball_collision_tree_hard_01.wav" id="30_aj46x"]
+[ext_resource type="AudioStream" uid="uid://nhmflp2wy5ht" path="res://assets/audio/sfx/sx_line_draw_loop_01.wav" id="31_vksiy"]
+[ext_resource type="AudioStream" uid="uid://ddn8rqugis5al" path="res://assets/audio/sfx/sx_ball_roll_loop_01.wav" id="32_urh4o"]
+[ext_resource type="AudioStream" uid="uid://bh3t1ku7yn87p" path="res://assets/audio/sfx/sx_prop_place_01.wav" id="33_tpg8w"]
+[ext_resource type="AudioStream" uid="uid://dpmsq4rcltvd6" path="res://assets/audio/sfx/sx_prop_erase_01.wav" id="34_414fo"]
+[ext_resource type="Script" path="res://MusicManager.gd" id="35_3wl60"]
+[ext_resource type="AudioStream" uid="uid://pftirax4xk8j" path="res://assets/audio/music/mx_gameplay_main_loop.wav" id="36_6sa4d"]
 
 [sub_resource type="Theme" id="Theme_mo81q"]
 
@@ -71,6 +79,21 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esw0e"]
 size = Vector2(69, 48)
 
+[sub_resource type="Animation" id="Animation_rtbjo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [111]
+}
+
 [sub_resource type="Animation" id="Animation_faoee"]
 resource_name = "wave"
 length = 2.7
@@ -88,21 +111,6 @@ tracks/0/keys = {
 "values": [111, 112]
 }
 
-[sub_resource type="Animation" id="Animation_rtbjo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flag:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [111]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iwksk"]
 _data = {
 "RESET": SubResource("Animation_rtbjo"),
@@ -115,10 +123,10 @@ script = ExtResource("1_m40wg")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1000
-offset_left = -602.0
-offset_top = -779.0
-offset_right = 1320.0
-offset_bottom = 1143.0
+offset_left = -700.0
+offset_top = -1066.0
+offset_right = 1894.0
+offset_bottom = 1528.0
 texture = ExtResource("2_ns0vt")
 
 [node name="Spin2Win2" parent="." instance=ExtResource("2_ys1u7")]
@@ -142,7 +150,7 @@ rotation = 0.543537
 scale = Vector2(2, 1.93622)
 
 [node name="Tree" parent="." instance=ExtResource("4_hqjeh")]
-position = Vector2(483, 495.6)
+position = Vector2(481, 498)
 rotation = 0.227328
 scale = Vector2(2.5, 2.5)
 
@@ -151,35 +159,12 @@ position = Vector2(459, 531.6)
 rotation = 0.233319
 scale = Vector2(2, 1.93622)
 
-[node name="Spin2Win" parent="." instance=ExtResource("2_ys1u7")]
-position = Vector2(1515, 106)
-
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2(798, 486)
-freeze = true
-script = ExtResource("2_fn7ww")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-shape = SubResource("CircleShape2D_dhx0a")
-
-[node name="TextureRect" type="TextureRect" parent="Ball"]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 44.0
-offset_bottom = 44.0
-scale = Vector2(0.62, 0.62)
-texture = ExtResource("1_c0d06")
-metadata/_edit_use_anchors_ = true
-
-[node name="Camera2D" type="Camera2D" parent="Ball"]
-enabled = false
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 2.0
+[node name="Ball" parent="." instance=ExtResource("6_8crjh")]
+position = Vector2(148, 121)
 
 [node name="Pause" type="Button" parent="."]
 offset_right = 65.0
@@ -192,12 +177,19 @@ offset_right = 150.0
 offset_bottom = 31.0
 text = "Resume"
 
-[node name="Restart" type="Button" parent="."]
+[node name="Clear" type="Button" parent="."]
 offset_left = 169.0
 offset_top = 1.0
 offset_right = 234.0
 offset_bottom = 32.0
-text = "Restart"
+text = "Clear"
+
+[node name="Reset" type="Button" parent="."]
+offset_left = 252.0
+offset_top = 1.0
+offset_right = 317.0
+offset_bottom = 32.0
+text = "Reset"
 
 [node name="GameControls" type="Control" parent="."]
 process_mode = 3
@@ -350,6 +342,14 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Gust
 "
 
+[node name="SFXFan" type="AudioStreamPlayer2D" parent="GameControls/Gust"]
+position = Vector2(-414.417, -77.3333)
+scale = Vector2(0.416667, 0.416667)
+stream = ExtResource("19_cx8pm")
+autoplay = true
+max_distance = 1250.0
+bus = &"SFX"
+
 [node name="StickyPencilSprite" type="Sprite2D" parent="GameControls"]
 position = Vector2(77.25, 373.75)
 scale = Vector2(1.38462, 1.38462)
@@ -407,11 +407,6 @@ text = "Normal"
 position = Vector2(444, 521.6)
 current = true
 
-[node name="MusicStream" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_v14mf")
-autoplay = true
-bus = &"Music"
-
 [node name="TestHTTPButton" type="Button" parent="."]
 visible = false
 offset_left = 253.0
@@ -424,6 +419,7 @@ script = ExtResource("17_0k1o0")
 [node name="HTTPRequest" type="HTTPRequest" parent="TestHTTPButton"]
 
 [node name="ObjectiveArea" type="Area2D" parent="."]
+script = ExtResource("26_44bpn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveArea"]
 position = Vector2(1076, 565.6)
@@ -431,15 +427,21 @@ shape = SubResource("RectangleShape2D_esw0e")
 debug_color = Color(0, 0.643137, 0.32549, 0.419608)
 
 [node name="Flag" type="Sprite2D" parent="ObjectiveArea"]
-position = Vector2(1070.5, 509.5)
+position = Vector2(1083.5, 514.5)
 scale = Vector2(3, 3)
 texture = ExtResource("12_d6emw")
 hframes = 20
 vframes = 9
 frame = 111
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ObjectiveArea/Flag"]
+z_index = 100
+position = Vector2(-361.167, -171.5)
+scale = Vector2(0.333333, 0.333333)
+amount = 17
+
 [node name="Flag2" type="Sprite2D" parent="ObjectiveArea"]
-position = Vector2(1071, 560)
+position = Vector2(1084, 565)
 scale = Vector2(3, 3)
 texture = ExtResource("12_d6emw")
 hframes = 20
@@ -452,20 +454,105 @@ libraries = {
 "": SubResource("AnimationLibrary_iwksk")
 }
 
+[node name="SFXWin" type="AudioStreamPlayer" parent="ObjectiveArea"]
+stream = ExtResource("26_ptqov")
+bus = &"SFX"
+
+[node name="Camera2D" type="Camera2D" parent="ObjectiveArea"]
+position = Vector2(1085, 517)
+enabled = false
+zoom = Vector2(5, 5)
+
+[node name="Label" type="Label" parent="ObjectiveArea"]
+visible = false
+offset_left = 1071.0
+offset_top = 501.0
+offset_right = 1163.0
+offset_bottom = 553.0
+scale = Vector2(0.42, 0.42)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "YE NICE
+IN YA WENT"
+
+[node name="SoundManager" type="Node2D" parent="."]
+script = ExtResource("27_80gow")
+
+[node name="SFXBallHitTree_Soft" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("28_hmkdo")
+max_distance = 1250.0
+panning_strength = 3.0
+bus = &"SFX"
+
+[node name="SFXBallHitTree_Medium" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("29_1gbar")
+max_distance = 1250.0
+panning_strength = 3.0
+bus = &"SFX"
+
+[node name="SFXBallHitTree_Hard" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("30_aj46x")
+max_distance = 1250.0
+panning_strength = 3.0
+bus = &"SFX"
+
+[node name="SFXDrawLoop" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("31_vksiy")
+max_distance = 1250.0
+bus = &"SFX"
+
+[node name="SFXBallRollLoop" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("32_urh4o")
+max_distance = 1250.0
+bus = &"SFX"
+
+[node name="SFXPropPlace" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource("33_tpg8w")
+bus = &"SFX"
+
+[node name="SFXPropErase" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource("34_414fo")
+bus = &"SFX"
+
+[node name="MusicManager" type="Node" parent="."]
+script = ExtResource("35_3wl60")
+
+[node name="MusicStream" type="AudioStreamPlayer" parent="MusicManager"]
+stream = ExtResource("36_6sa4d")
+bus = &"Music"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 1158.0
+offset_top = 1218.0
+offset_right = 1349.0
+offset_bottom = 1244.0
+scale = Vector2(6, 6)
+text = "YOU GOOFED THE DEMO"
+
 [connection signal="pressed" from="Pause" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Clear" to="." method="_on_clear_pressed"]
+[connection signal="mouse_entered" from="Reset" to="." method="_on_reset_mouse_entered"]
+[connection signal="mouse_exited" from="Reset" to="." method="_on_reset_mouse_exited"]
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]
 [connection signal="mouse_entered" from="GameControls" to="." method="_on_game_controls_mouse_entered"]
 [connection signal="mouse_exited" from="GameControls" to="." method="_on_game_controls_mouse_exited"]
 [connection signal="pressed" from="GameControls/GO_Button" to="." method="_on_go_button_pressed"]
+[connection signal="pressed" from="GameControls/GO_Button" to="SoundManager" method="_on_go_button_pressed"]
+[connection signal="pressed" from="GameControls/GO_Button" to="MusicManager" method="_on_go_button_pressed"]
 [connection signal="gui_input" from="GameControls/SpringSprite/SpringPlacementControl" to="GameControls/SpringSprite/SpringPlacementControl" method="_on_gui_input"]
 [connection signal="mouse_entered" from="GameControls/SpringSprite/SpringPlacementControl" to="." method="_on_spring_placement_control_mouse_entered"]
 [connection signal="mouse_entered" from="GameControls/SpringSprite/SpringPlacementControl" to="GameControls/SpringSprite/SpringPlacementControl" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="GameControls/SpringSprite/SpringPlacementControl" to="." method="_on_spring_placement_control_mouse_exited"]
+[connection signal="spring_being_placed" from="GameControls/SpringSprite/SpringPlacementControl" to="SoundManager" method="_on_spring_placement_control_spring_being_placed"]
+[connection signal="spring_placed" from="GameControls/SpringSprite/SpringPlacementControl" to="SoundManager" method="_on_spring_placement_control_spring_placed"]
 [connection signal="gui_input" from="GameControls/Gust/GustControl" to="GameControls/Gust/GustControl" method="_on_gui_input"]
+[connection signal="gust_placed" from="GameControls/Gust/GustControl" to="SoundManager" method="_on_gust_control_gust_placed"]
 [connection signal="gui_input" from="GameControls/StickyPencilSprite/StickyPencilControl" to="GameControls/StickyPencilSprite/StickyPencilControl" method="_on_gui_input"]
 [connection signal="sticky_pencil_clicked" from="GameControls/StickyPencilSprite/StickyPencilControl" to="." method="_on_sticky_pencil_control_sticky_pencil_clicked"]
+[connection signal="sticky_pencil_clicked" from="GameControls/StickyPencilSprite/StickyPencilControl" to="SoundManager" method="_on_sticky_pencil_control_sticky_pencil_clicked"]
 [connection signal="gui_input" from="GameControls/NormalPencilSprite/NormalPencilControl" to="GameControls/NormalPencilSprite/NormalPencilControl" method="_on_gui_input"]
 [connection signal="normal_pencil_clicked" from="GameControls/NormalPencilSprite/NormalPencilControl" to="." method="_on_normal_pencil_control_normal_pencil_clicked"]
+[connection signal="normal_pencil_clicked" from="GameControls/NormalPencilSprite/NormalPencilControl" to="SoundManager" method="_on_normal_pencil_control_normal_pencil_clicked"]
 [connection signal="pressed" from="TestHTTPButton" to="TestHTTPButton" method="_on_pressed"]
 [connection signal="body_entered" from="ObjectiveArea" to="." method="_on_objective_area_body_entered"]
+[connection signal="body_entered" from="ObjectiveArea" to="ObjectiveArea" method="_on_body_entered"]

@@ -17,10 +17,19 @@ var to: Vector2;
 var prop_is_being_placed: bool = false;
 var current_obstacle_scene;
 var invalid_drawing_start_location = false;
+
+var ballScene = preload("res://scenes/ball.tscn")
+var initialBallPosition: Vector2 = Vector2.ZERO
+var currentBallRef = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	get_tree().paused = true
-	$Ball/Camera2D.enabled = false
+	#$Ball/Camera2D.enabled = false
+	currentBallRef = get_node("Ball") as RigidBody2D
+	currentBallRef.get_node("Camera2D").enabled = false
+	initialBallPosition = currentBallRef.position
+	get_node("MusicManager")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -77,14 +86,35 @@ func _on_button_pressed():
 func _on_resume_pressed():
 	get_tree().paused = false
 
-func _on_restart_pressed():
+func _on_clear_pressed():
+	if (currentBallRef != null):
+		currentBallRef.queue_free()
+		get_parent().remove_child(currentBallRef)
 	get_tree().reload_current_scene()
+
+func _on_reset_pressed():
+	if (currentBallRef != null):
+		currentBallRef.queue_free()
+		get_parent().remove_child(currentBallRef)
+	var newBall = ballScene.instantiate()
+	newBall.position = initialBallPosition
+	currentBallRef = newBall
+	get_node("MusicManager").update_ball_ref(newBall)
+	get_parent().add_child(newBall)
+#	newBall.get_node("Camera2D").enabled = true;
+	$ObjectiveArea/Camera2D.enabled = false;
+	$GameControls.visible = true
 
 func _on_go_button_pressed():
 	get_tree().paused = false
-	$Ball.freeze = false;
-	$Ball/Camera2D.enabled = true
-	$GameControls.queue_free()
+	currentBallRef.freeze = false;
+	currentBallRef.get_node("Camera2D").enabled = true
+	$GameControls.visible = false
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			_on_reset_pressed()
 
 func _on_spring_placement_control_mouse_entered():
 	invalid_drawing_start_location = true
@@ -111,6 +141,19 @@ func _on_sticky_pencil_control_sticky_pencil_clicked():
 func _on_objective_area_body_entered(body):
 	print('game over')
 	get_tree().paused = true
-	$Ball.freeze = false;
-	$Ball/Camera2D.zoom = Vector2(2,2)
+	currentBallRef.get_node('Camera2D').zoom = Vector2(6,6);
+#	$Ball.freeze = true;
+#	$Ball/Camera2D.zoom = Vector2(2,2)
+	currentBallRef.queue_free()
+	get_parent().remove_child(currentBallRef)
+	pass # Replace with function body.
+
+
+func _on_reset_mouse_entered():
+	invalid_drawing_start_location = true
+	pass # Replace with function body.
+
+
+func _on_reset_mouse_exited():
+	invalid_drawing_start_location = false
 	pass # Replace with function body.

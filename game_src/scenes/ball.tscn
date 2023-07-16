@@ -8,6 +8,7 @@ radius = 20.025
 
 [node name="Ball" type="RigidBody2D"]
 position = Vector2(428, 113)
+freeze = true
 script = ExtResource("1_svn36")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -21,3 +22,6 @@ offset_bottom = 44.0
 scale = Vector2(0.62, 0.62)
 texture = ExtResource("2_6tt44")
 metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false

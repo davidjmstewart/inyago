@@ -3,6 +3,7 @@ extends Control
 var gust_scene = load("res://scenes/gust.tscn");
 var spring_scenes = []
 var current_gust_scene = null;
+signal gust_placed;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -20,5 +21,6 @@ func _on_gui_input(event):
 #			new_spring_scene.set_interaction_state(0)
 			current_gust_scene = new_gust_scene;
 			get_tree().get_root().add_child(new_gust_scene)
-			new_gust_scene.set_interaction_state(Types.PROP_INTERACTION_STATE.PLACING)
+			new_gust_scene.set_interaction_state(Types.PROP_INTERACTION_STATE.PLACING);
+			gust_placed.emit()
 #			spring_being_placed.emit()

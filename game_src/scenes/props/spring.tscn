@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://y4eybjy6i82l"]
+[gd_scene load_steps=8 format=3 uid="uid://y4eybjy6i82l"]
 
 [ext_resource type="Script" path="res://scenes/props/spring.gd" id="1_5cdqg"]
 [ext_resource type="Script" path="res://scenes/props/SpringArea.gd" id="2_k478r"]
 [ext_resource type="Texture2D" uid="uid://c4hqpt6o18dfg" path="res://assets/sprite_sheets/pixel_platformer/tiles.png" id="3_5tv2t"]
-[ext_resource type="AudioStream" uid="uid://c33w73lltpoog" path="res://assets/audio/music/sx_spring_bounce.wav" id="4_4a17p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bo4y8"]
 size = Vector2(20, 12.3333)
@@ -78,14 +77,14 @@ target_position = Vector2(-16.6667, 0)
 target_position = Vector2(0, 16.6667)
 
 [node name="RayCastRight" type="RayCast2D" parent="RayCasts"]
-target_position = Vector2(14.6667, 0)
+position = Vector2(0.333333, 4.66667)
+target_position = Vector2(18.6667, 0)
 
 [node name="RayCastUp" type="RayCast2D" parent="RayCasts"]
 position = Vector2(0, 0.333333)
 target_position = Vector2(0, -9.66667)
 
 [node name="SpringSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_4a17p")
 volume_db = 5.333
 max_distance = 1250.0
 panning_strength = 3.0
