@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cbi05mdjbbmy3"]
+[gd_scene load_steps=31 format=3 uid="uid://cbi05mdjbbmy3"]
 
 [ext_resource type="Texture2D" uid="uid://bnl4ike8pqc2b" path="res://assets/textures/ball_red_large.png" id="1_c0d06"]
 [ext_resource type="Script" path="res://DemoLevel.gd" id="1_m40wg"]
 [ext_resource type="Script" path="res://Ball.gd" id="2_fn7ww"]
+[ext_resource type="PackedScene" uid="uid://cyk7tdjjwesga" path="res://scenes/chain/chain.tscn" id="2_tujes"]
 [ext_resource type="PackedScene" uid="uid://cmlh3ihumvnw1" path="res://scenes/spin_2_win.tscn" id="2_ys1u7"]
 [ext_resource type="PackedScene" uid="uid://l11vx11p2myj" path="res://scenes/trees/TreeTypeA.tscn" id="3_wrths"]
 [ext_resource type="PackedScene" uid="uid://y4eybjy6i82l" path="res://scenes/props/spring.tscn" id="4_dwf4t"]
@@ -13,10 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://c4t6vcg6ysqn8" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a3.png" id="8_0fsme"]
 [ext_resource type="Texture2D" uid="uid://di7cp2ap18ytr" path="res://assets/textures/buttons/paper/UI_Paper_Checkmark_Standard.png" id="10_87vx8"]
 [ext_resource type="Texture2D" uid="uid://byp0lyk6ufldf" path="res://assets/textures/buttons/paper/UI_Paper_Frame_01_Vertical.png" id="11_6nrda"]
+[ext_resource type="FontFile" uid="uid://b425c5b6xtnlp" path="res://assets/fonts/Kenney Pixel Square.ttf" id="11_ijisg"]
 [ext_resource type="Texture2D" uid="uid://c4hqpt6o18dfg" path="res://assets/sprite_sheets/pixel_platformer/tiles.png" id="12_d6emw"]
 [ext_resource type="Script" path="res://scripts/SpringPlacementControl.gd" id="12_e61yt"]
 [ext_resource type="Texture2D" uid="uid://hehrk67m7xbu" path="res://assets/textures/pencils/pencil9.png" id="14_5hxm7"]
 [ext_resource type="PackedScene" uid="uid://c5k8l2kclnrg" path="res://scenes/gust.tscn" id="15_1m0bk"]
+[ext_resource type="Theme" uid="uid://n5nx1j7ftifv" path="res://inyago.tres" id="15_ie153"]
 [ext_resource type="Texture2D" uid="uid://e41okn4gw4li" path="res://assets/textures/pencils/pencil12.png" id="15_mh0ef"]
 [ext_resource type="Script" path="res://scripts/NormalPencilControl.gd" id="16_4p6el"]
 [ext_resource type="Script" path="res://scripts/GustControl.gd" id="16_c8gnu"]
@@ -28,9 +31,49 @@ radius = 20.025
 
 [sub_resource type="Theme" id="Theme_mo81q"]
 
+[sub_resource type="Animation" id="Animation_8ijh1"]
+resource_name = "bob"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-11, 52), Vector2(-11, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_fk35b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, 52)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l7h14"]
+_data = {
+"RESET": SubResource("Animation_fk35b"),
+"bob": SubResource("Animation_8ijh1")
+}
+
 [node name="GameRoot" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_m40wg")
+
+[node name="Chain" parent="." instance=ExtResource("2_tujes")]
+position = Vector2(420, 123)
 
 [node name="Spin2Win" parent="." instance=ExtResource("2_ys1u7")]
 position = Vector2(260, 164)
@@ -107,13 +150,14 @@ texture_hover = ExtResource("7_amcfp")
 
 [node name="Label" type="Label" parent="GameControls/GO_Button"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 3.0
+offset_left = 37.0
+offset_top = 1.0
 offset_right = 61.0
-offset_bottom = 29.0
+offset_bottom = 31.0
 mouse_filter = 1
 theme = SubResource("Theme_mo81q")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_ijisg")
 text = "GO"
 
 [node name="Check" type="TextureRect" parent="GameControls/GO_Button"]
@@ -154,12 +198,21 @@ texture = ExtResource("6_ikjn7")
 
 [node name="BannerText" type="Label" parent="GameControls/Banner"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 32.0
-offset_right = 84.0
-offset_bottom = 58.0
+offset_left = -4.0
+offset_top = 29.0
+offset_right = 90.0
+offset_bottom = 56.0
 scale = Vector2(2, 2)
+theme = ExtResource("15_ie153")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_ijisg")
+theme_override_font_sizes/font_size = 16
 text = "Controls"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameControls/Banner"]
+libraries = {
+"": SubResource("AnimationLibrary_l7h14")
+}
 
 [node name="SpringSprite" type="Sprite2D" parent="GameControls"]
 process_mode = 3
@@ -182,11 +235,14 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="GameControls/SpringSprite/SpringPlacementControl"]
 layout_mode = 0
-offset_left = 24.1035
+offset_left = 21.4827
 offset_top = -2.80461
-offset_right = 74.1035
-offset_bottom = 23.1954
+offset_right = 89.4827
+offset_bottom = 24.1954
 scale = Vector2(0.665, 0.665)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_ijisg")
+theme_override_font_sizes/font_size = 16
 text = "Spring
 "
 
@@ -206,11 +262,13 @@ script = ExtResource("16_c8gnu")
 
 [node name="GustLabel" type="Label" parent="GameControls/Gust/GustControl"]
 layout_mode = 0
-offset_left = 17.6667
+offset_left = 21.0
 offset_top = 2.0
-offset_right = 63.6667
+offset_right = 67.0
 offset_bottom = 28.0
 scale = Vector2(0.5, 0.5)
+theme = ExtResource("15_ie153")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Gust
 "
 
@@ -236,6 +294,8 @@ offset_left = 37.4999
 offset_top = 4.72229
 offset_right = 96.4999
 offset_bottom = 32.7223
+theme = ExtResource("15_ie153")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Sticky"
 
 [node name="NormalPencilSprite" type="Sprite2D" parent="GameControls"]
@@ -256,11 +316,13 @@ script = ExtResource("16_4p6el")
 
 [node name="Normal" type="Label" parent="GameControls/NormalPencilSprite/NormalPencilControl"]
 layout_mode = 0
-offset_left = 36.4999
-offset_top = 5.00006
-offset_right = 95.4999
-offset_bottom = 33.0001
+offset_left = 38.6666
+offset_top = 2.83339
+offset_right = 112.667
+offset_bottom = 30.8334
 mouse_filter = 1
+theme = ExtResource("15_ie153")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Normal"
 
 [node name="AudioListener" type="AudioListener2D" parent="."]

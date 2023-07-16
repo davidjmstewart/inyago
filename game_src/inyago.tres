@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://n5nx1j7ftifv"]
+
+[ext_resource type="FontFile" uid="uid://b425c5b6xtnlp" path="res://assets/fonts/Kenney Pixel Square.ttf" id="1_mgcn1"]
+
+[resource]
+default_font = ExtResource("1_mgcn1")
