@@ -33,29 +33,23 @@ func set_points(obstacle_points: Array[Obstacle]) -> void:
 			p.append(Obstacle.new(from, to, self.obstacle_points[i].get_obstacle_type()))
 #	var p = obstacle_points.map(func (p) )
 	
-	for op in p:
-#		if (i%take_every==0):
-#			continue
-#		var op = self.obstacle_points[i]
-		
+	for op in p:		
 		var collisionSegment = CollisionShape2D.new()
 		var angle = op.from.angle_to(op.to);
-		print(angle)
-#		var angle = PI/4
 		var diff = op.from - op.to
 		var magnitude = diff.length()
 
-		var size = Vector2(magnitude, 10)
-		print(magnitude)
-#		collisionSegment.shape = RectangleShape2D.new();
-#		collisionSegment.shape.size = size;
-#		collisionSegment.position = op.from
-#		collisionSegment.rotation = deg_to_rad(angle);
-#		print(angle)
-#		collisionSegment.rotation = PI/2
-		collisionSegment.shape = SegmentShape2D.new();
-		collisionSegment.shape.a = op.from;
-		collisionSegment.shape.b = op.to;
+		var size = Vector2(magnitude, 5)
+
+		collisionSegment.shape = RectangleShape2D.new();
+		collisionSegment.shape.size = size;
+		collisionSegment.position = op.from
+		collisionSegment.rotation = (op.from - op.to).angle()
+
+
+#		collisionSegment.shape = SegmentShape2D.new();
+#		collisionSegment.shape.a = op.from;
+#		collisionSegment.shape.b = op.to;
 		$StaticBody2D.add_child(collisionSegment)
 	queue_redraw()
 
