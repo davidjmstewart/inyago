@@ -24,12 +24,32 @@ func _process(delta):
 
 func set_points(obstacle_points: Array[Obstacle]) -> void:
 	self.obstacle_points = obstacle_points
-	for op in self.obstacle_points:
+	var take_every = 5
+	var p = []
+	for i in len(self.obstacle_points) - take_every:
+		if i % take_every == 0:
+			var from = self.obstacle_points[i].from
+			var to = self.obstacle_points[i + take_every].from
+			p.append(Obstacle.new(from, to, self.obstacle_points[i].get_obstacle_type()))
+#	var p = obstacle_points.map(func (p) )
+	
+	for op in p:		
 		var collisionSegment = CollisionShape2D.new()
 		var angle = op.from.angle_to(op.to);
-		collisionSegment.shape = SegmentShape2D.new();
-		collisionSegment.shape.a = op.from;
-		collisionSegment.shape.b = op.to;
+		var diff = op.from - op.to
+		var magnitude = diff.length()
+
+		var size = Vector2(magnitude, 5)
+
+		collisionSegment.shape = RectangleShape2D.new();
+		collisionSegment.shape.size = size;
+		collisionSegment.position = op.from
+		collisionSegment.rotation = (op.from - op.to).angle()
+
+
+#		collisionSegment.shape = SegmentShape2D.new();
+#		collisionSegment.shape.a = op.from;
+#		collisionSegment.shape.b = op.to;
 		$StaticBody2D.add_child(collisionSegment)
 	queue_redraw()
 
@@ -55,7 +75,7 @@ func set_drawing_still_in_progress(state: bool):
 #				print('reparenting to', result.collider)
 				self.reparent(result.collider)
 				return
-	self.queue_free()
+		self.queue_free()
 		
 func _draw():
 	for op in self.obstacle_points:
