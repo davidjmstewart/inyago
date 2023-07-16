@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0pa7qqijyegl"]
+
+[ext_resource type="Script" path="res://Stopwatch_final.gd" id="1_wk77k"]
+[ext_resource type="Texture2D" uid="uid://dhsx6mveqjx4" path="res://assets/tiles/pixel_platformer/tile_0160.png" id="2_1ay4o"]
+[ext_resource type="Texture2D" uid="uid://chtebqtv7gil5" path="res://assets/tiles/pixel_platformer/tile_0157.png" id="3_qtdru"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_wk77k")
+
+[node name="Milliseconds1" type="Sprite2D" parent="."]
+position = Vector2(544, 74)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1ay4o")
+
+[node name="Milliseconds2" type="Sprite2D" parent="."]
+position = Vector2(513, 74)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1ay4o")
+
+[node name="Separator1" type="Sprite2D" parent="."]
+position = Vector2(486, 72)
+scale = Vector2(2, 2)
+texture = ExtResource("3_qtdru")
+
+[node name="Seconds1" type="Sprite2D" parent="."]
+position = Vector2(460, 76)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1ay4o")
+
+[node name="Seconds2" type="Sprite2D" parent="."]
+position = Vector2(426, 76)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1ay4o")
+
+[node name="Separator2" type="Sprite2D" parent="."]
+position = Vector2(396, 73)
+scale = Vector2(2, 2)
+texture = ExtResource("3_qtdru")
+
+[node name="Minutes1" type="Sprite2D" parent="."]
+position = Vector2(368, 78)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1ay4o")
+
+[node name="Minutes2" type="Sprite2D" parent="."]
+position = Vector2(335, 79)
+scale = Vector2(3, 3)
+texture = ExtResource("2_1ay4o")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cbi05mdjbbmy3"]
+[gd_scene load_steps=35 format=3 uid="uid://cbi05mdjbbmy3"]
 
 [ext_resource type="Texture2D" uid="uid://bnl4ike8pqc2b" path="res://assets/textures/ball_red_large.png" id="1_c0d06"]
 [ext_resource type="Script" path="res://DemoLevel.gd" id="1_m40wg"]
 [ext_resource type="Script" path="res://Ball.gd" id="2_fn7ww"]
-[ext_resource type="PackedScene" uid="uid://l11vx11p2myj" path="res://scenes/trees/TreeTypeA.tscn" id="3_wrths"]
-[ext_resource type="PackedScene" uid="uid://y4eybjy6i82l" path="res://scenes/props/spring.tscn" id="4_dwf4t"]
+[ext_resource type="Texture2D" uid="uid://dvlw2nsdvv6sb" path="res://assets/backgrounds/backgroundColorForest.png" id="2_ns0vt"]
+[ext_resource type="PackedScene" uid="uid://cmlh3ihumvnw1" path="res://scenes/spin_2_win.tscn" id="2_ys1u7"]
+[ext_resource type="PackedScene" uid="uid://dkds0pqcbvt4c" path="res://scenes/grass_platform.tscn" id="3_b8fvv"]
+[ext_resource type="PackedScene" uid="uid://l11vx11p2myj" path="res://scenes/trees/TreeTypeA.tscn" id="4_hqjeh"]
 [ext_resource type="Texture2D" uid="uid://ij8n2wbc3vbm" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a1.png" id="6_2pxlb"]
 [ext_resource type="Texture2D" uid="uid://g27i3erdwciq" path="res://assets/textures/buttons/paper/UI_Paper_Banner_01_Downward.png" id="6_ikjn7"]
 [ext_resource type="Texture2D" uid="uid://rfhdb17x2m7k" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a2.png" id="7_amcfp"]
@@ -12,20 +14,153 @@
 [ext_resource type="Texture2D" uid="uid://c4t6vcg6ysqn8" path="res://assets/textures/buttons/paper/UI_Paper_Button_Large_Press_02a3.png" id="8_0fsme"]
 [ext_resource type="Texture2D" uid="uid://di7cp2ap18ytr" path="res://assets/textures/buttons/paper/UI_Paper_Checkmark_Standard.png" id="10_87vx8"]
 [ext_resource type="Texture2D" uid="uid://byp0lyk6ufldf" path="res://assets/textures/buttons/paper/UI_Paper_Frame_01_Vertical.png" id="11_6nrda"]
+[ext_resource type="FontFile" uid="uid://b425c5b6xtnlp" path="res://assets/fonts/Kenney Pixel Square.ttf" id="11_ijisg"]
 [ext_resource type="Texture2D" uid="uid://c4hqpt6o18dfg" path="res://assets/sprite_sheets/pixel_platformer/tiles.png" id="12_d6emw"]
 [ext_resource type="Script" path="res://scripts/SpringPlacementControl.gd" id="12_e61yt"]
+[ext_resource type="Texture2D" uid="uid://hehrk67m7xbu" path="res://assets/textures/pencils/pencil9.png" id="14_5hxm7"]
+[ext_resource type="PackedScene" uid="uid://c5k8l2kclnrg" path="res://scenes/gust.tscn" id="15_1m0bk"]
+[ext_resource type="Theme" uid="uid://n5nx1j7ftifv" path="res://inyago.tres" id="15_ie153"]
+[ext_resource type="Texture2D" uid="uid://e41okn4gw4li" path="res://assets/textures/pencils/pencil12.png" id="15_mh0ef"]
+[ext_resource type="Script" path="res://scripts/NormalPencilControl.gd" id="16_4p6el"]
+[ext_resource type="Script" path="res://scripts/GustControl.gd" id="16_c8gnu"]
+[ext_resource type="Script" path="res://scripts/StickyPencilControl.gd" id="16_upbbh"]
+[ext_resource type="Script" path="res://scripts/TestHTTPButton.gd" id="17_0k1o0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dhx0a"]
 radius = 20.025
 
 [sub_resource type="Theme" id="Theme_mo81q"]
 
+[sub_resource type="Animation" id="Animation_fk35b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, 52)]
+}
+
+[sub_resource type="Animation" id="Animation_8ijh1"]
+resource_name = "bob"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(41.25, 31.25), Vector2(41.25, 35)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l7h14"]
+_data = {
+"RESET": SubResource("Animation_fk35b"),
+"bob": SubResource("Animation_8ijh1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esw0e"]
+size = Vector2(69, 48)
+
+[sub_resource type="Animation" id="Animation_faoee"]
+resource_name = "wave"
+length = 2.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [111, 112]
+}
+
+[sub_resource type="Animation" id="Animation_rtbjo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [111]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iwksk"]
+_data = {
+"RESET": SubResource("Animation_rtbjo"),
+"wave": SubResource("Animation_faoee")
+}
+
 [node name="GameRoot" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_m40wg")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1000
+offset_left = -602.0
+offset_top = -779.0
+offset_right = 1320.0
+offset_bottom = 1143.0
+texture = ExtResource("2_ns0vt")
+
+[node name="Spin2Win2" parent="." instance=ExtResource("2_ys1u7")]
+position = Vector2(344, 112)
+
+[node name="GrassPlatform" parent="." instance=ExtResource("3_b8fvv")]
+position = Vector2(255, 494.6)
+scale = Vector2(2, 1.93622)
+
+[node name="GrassPlatform3" parent="." instance=ExtResource("3_b8fvv")]
+position = Vector2(196, 329.6)
+scale = Vector2(2, 1.93622)
+
+[node name="GrassPlatform5" parent="." instance=ExtResource("3_b8fvv")]
+position = Vector2(1059, 610.6)
+scale = Vector2(2, 1.93622)
+
+[node name="GrassPlatform6" parent="." instance=ExtResource("3_b8fvv")]
+position = Vector2(850, 583.6)
+rotation = 0.543537
+scale = Vector2(2, 1.93622)
+
+[node name="Tree" parent="." instance=ExtResource("4_hqjeh")]
+position = Vector2(483, 495.6)
+rotation = 0.227328
+scale = Vector2(2.5, 2.5)
+
+[node name="GrassPlatform2" parent="." instance=ExtResource("3_b8fvv")]
+position = Vector2(459, 531.6)
+rotation = 0.233319
+scale = Vector2(2, 1.93622)
+
+[node name="Spin2Win" parent="." instance=ExtResource("2_ys1u7")]
+position = Vector2(1515, 106)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2(43, 378)
+position = Vector2(150, 207.6)
+freeze = true
 script = ExtResource("2_fn7ww")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
@@ -40,7 +175,8 @@ scale = Vector2(0.62, 0.62)
 texture = ExtResource("1_c0d06")
 metadata/_edit_use_anchors_ = true
 
-[node name="Tree" parent="." instance=ExtResource("3_wrths")]
+[node name="Camera2D" type="Camera2D" parent="Ball"]
+enabled = false
 
 [node name="Pause" type="Button" parent="."]
 offset_right = 65.0
@@ -53,10 +189,6 @@ offset_right = 150.0
 offset_bottom = 31.0
 text = "Resume"
 
-[node name="SpringRoot" parent="." instance=ExtResource("4_dwf4t")]
-position = Vector2(41, 438)
-interaction_state = 1
-
 [node name="Restart" type="Button" parent="."]
 offset_left = 169.0
 offset_top = 1.0
@@ -65,30 +197,41 @@ offset_bottom = 32.0
 text = "Restart"
 
 [node name="GameControls" type="Control" parent="."]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 928.0
+offset_top = -7.0
+offset_right = 1168.0
+offset_bottom = 512.0
+scale = Vector2(0.8, 0.8)
+mouse_filter = 1
 
 [node name="GO_Button" type="TextureButton" parent="GameControls"]
+process_mode = 3
+z_index = 1
 layout_mode = 0
-offset_left = 921.0
-offset_top = 495.0
-offset_right = 1017.0
-offset_bottom = 532.0
+offset_left = 31.25
+offset_top = 439.75
+offset_right = 127.25
+offset_bottom = 471.75
 scale = Vector2(2, 2)
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_2pxlb")
 texture_pressed = ExtResource("8_0fsme")
 texture_hover = ExtResource("7_amcfp")
 
 [node name="Label" type="Label" parent="GameControls/GO_Button"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 3.0
-offset_right = 72.0
-offset_bottom = 29.0
+offset_left = 37.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 31.0
+mouse_filter = 1
 theme = SubResource("Theme_mo81q")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_ijisg")
 text = "GO"
 
 [node name="Check" type="TextureRect" parent="GameControls/GO_Button"]
@@ -103,37 +246,52 @@ texture = ExtResource("10_87vx8")
 [node name="ControlsBackground" type="TextureRect" parent="GameControls"]
 z_index = -1
 layout_mode = 0
-offset_left = 916.0
-offset_top = 89.0
-offset_right = 1115.0
-offset_bottom = 567.0
+offset_left = 26.25
+offset_top = 33.75
+offset_right = 225.25
+offset_bottom = 511.75
+mouse_filter = 2
 texture = ExtResource("11_6nrda")
 
 [node name="Banner" type="Control" parent="GameControls"]
+layout_mode = 3
 anchors_preset = 0
-offset_left = 929.0
-offset_top = 93.0
-offset_right = 1114.0
-offset_bottom = 169.0
+offset_left = -11.0
+offset_top = 52.0
+offset_right = 174.0
+offset_bottom = 128.0
+mouse_filter = 1
 
 [node name="BannerTexture" type="TextureRect" parent="GameControls/Banner"]
 layout_mode = 0
-offset_left = -91.0
+offset_left = -131.0
 offset_top = -45.0
-offset_right = 275.0
-offset_bottom = 107.0
+offset_right = 304.0
+offset_bottom = 136.0
 texture = ExtResource("6_ikjn7")
 
-[node name="Label" type="Label" parent="GameControls/Banner"]
+[node name="BannerText" type="Label" parent="GameControls/Banner"]
 layout_mode = 0
-offset_left = 57.0
+offset_left = -4.0
 offset_top = 29.0
-offset_right = 123.0
-offset_bottom = 55.0
+offset_right = 90.0
+offset_bottom = 56.0
+scale = Vector2(2, 2)
+theme = ExtResource("15_ie153")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_ijisg")
+theme_override_font_sizes/font_size = 16
 text = "Controls"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameControls/Banner"]
+autoplay = "bob"
+libraries = {
+"": SubResource("AnimationLibrary_l7h14")
+}
+
 [node name="SpringSprite" type="Sprite2D" parent="GameControls"]
-position = Vector2(968, 202)
+process_mode = 3
+position = Vector2(83.25, 165.75)
 scale = Vector2(2.28947, 2.28947)
 texture = ExtResource("12_d6emw")
 hframes = 20
@@ -148,9 +306,102 @@ offset_top = -2.0
 offset_right = 10.0
 offset_bottom = 11.0
 script = ExtResource("12_e61yt")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="GameControls/SpringSprite/SpringPlacementControl"]
+layout_mode = 0
+offset_left = 21.4827
+offset_top = -2.80461
+offset_right = 89.4827
+offset_bottom = 24.1954
+scale = Vector2(0.665, 0.665)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_ijisg")
+theme_override_font_sizes/font_size = 16
+text = "Spring
+"
+
+[node name="Gust" parent="GameControls" instance=ExtResource("15_1m0bk")]
+position = Vector2(83.25, 240.75)
+
+[node name="GustControl" type="Control" parent="GameControls/Gust"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -7.0
+offset_right = 40.0
+offset_bottom = 9.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+script = ExtResource("16_c8gnu")
+
+[node name="GustLabel" type="Label" parent="GameControls/Gust/GustControl"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 2.0
+offset_right = 67.0
+offset_bottom = 28.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("15_ie153")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Gust
+"
+
+[node name="StickyPencilSprite" type="Sprite2D" parent="GameControls"]
+position = Vector2(77.25, 373.75)
+scale = Vector2(1.38462, 1.38462)
+texture = ExtResource("15_mh0ef")
+
+[node name="StickyPencilControl" type="Control" parent="GameControls/StickyPencilSprite"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -18.0
+offset_top = -17.0
+offset_right = 70.0
+offset_bottom = 19.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+script = ExtResource("16_upbbh")
+
+[node name="Sticky" type="Label" parent="GameControls/StickyPencilSprite/StickyPencilControl"]
+layout_mode = 0
+offset_left = 37.4999
+offset_top = 4.72229
+offset_right = 96.4999
+offset_bottom = 32.7223
+theme = ExtResource("15_ie153")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Sticky"
+
+[node name="NormalPencilSprite" type="Sprite2D" parent="GameControls"]
+position = Vector2(75.25, 321.75)
+scale = Vector2(1.38462, 1.38462)
+texture = ExtResource("14_5hxm7")
+
+[node name="NormalPencilControl" type="Control" parent="GameControls/NormalPencilSprite"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -17.0
+offset_top = -18.0
+offset_right = 89.0
+offset_bottom = 19.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+script = ExtResource("16_4p6el")
+
+[node name="Normal" type="Label" parent="GameControls/NormalPencilSprite/NormalPencilControl"]
+layout_mode = 0
+offset_left = 38.6666
+offset_top = 2.83339
+offset_right = 112.667
+offset_bottom = 30.8334
+mouse_filter = 1
+theme = ExtResource("15_ie153")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Normal"
 
 [node name="AudioListener" type="AudioListener2D" parent="."]
-position = Vector2(568, 348)
+position = Vector2(444, 521.6)
 current = true
 
 [node name="MusicStream" type="AudioStreamPlayer" parent="."]
@@ -158,8 +409,60 @@ stream = ExtResource("7_v14mf")
 autoplay = true
 bus = &"Music"
 
+[node name="TestHTTPButton" type="Button" parent="."]
+visible = false
+offset_left = 253.0
+offset_top = 2.0
+offset_right = 373.0
+offset_bottom = 46.0
+text = "Test HTTP"
+script = ExtResource("17_0k1o0")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="TestHTTPButton"]
+
+[node name="ObjectiveArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveArea"]
+position = Vector2(1076, 565.6)
+shape = SubResource("RectangleShape2D_esw0e")
+debug_color = Color(0, 0.643137, 0.32549, 0.419608)
+
+[node name="Flag" type="Sprite2D" parent="ObjectiveArea"]
+position = Vector2(1070.5, 509.5)
+scale = Vector2(3, 3)
+texture = ExtResource("12_d6emw")
+hframes = 20
+vframes = 9
+frame = 111
+
+[node name="Flag2" type="Sprite2D" parent="ObjectiveArea"]
+position = Vector2(1071, 560)
+scale = Vector2(3, 3)
+texture = ExtResource("12_d6emw")
+hframes = 20
+vframes = 9
+frame = 131
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjectiveArea"]
+autoplay = "wave"
+libraries = {
+"": SubResource("AnimationLibrary_iwksk")
+}
+
 [connection signal="pressed" from="Pause" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="mouse_entered" from="GameControls" to="." method="_on_game_controls_mouse_entered"]
+[connection signal="mouse_exited" from="GameControls" to="." method="_on_game_controls_mouse_exited"]
+[connection signal="pressed" from="GameControls/GO_Button" to="." method="_on_go_button_pressed"]
 [connection signal="gui_input" from="GameControls/SpringSprite/SpringPlacementControl" to="GameControls/SpringSprite/SpringPlacementControl" method="_on_gui_input"]
+[connection signal="mouse_entered" from="GameControls/SpringSprite/SpringPlacementControl" to="." method="_on_spring_placement_control_mouse_entered"]
 [connection signal="mouse_entered" from="GameControls/SpringSprite/SpringPlacementControl" to="GameControls/SpringSprite/SpringPlacementControl" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GameControls/SpringSprite/SpringPlacementControl" to="." method="_on_spring_placement_control_mouse_exited"]
+[connection signal="gui_input" from="GameControls/Gust/GustControl" to="GameControls/Gust/GustControl" method="_on_gui_input"]
+[connection signal="gui_input" from="GameControls/StickyPencilSprite/StickyPencilControl" to="GameControls/StickyPencilSprite/StickyPencilControl" method="_on_gui_input"]
+[connection signal="sticky_pencil_clicked" from="GameControls/StickyPencilSprite/StickyPencilControl" to="." method="_on_sticky_pencil_control_sticky_pencil_clicked"]
+[connection signal="gui_input" from="GameControls/NormalPencilSprite/NormalPencilControl" to="GameControls/NormalPencilSprite/NormalPencilControl" method="_on_gui_input"]
+[connection signal="normal_pencil_clicked" from="GameControls/NormalPencilSprite/NormalPencilControl" to="." method="_on_normal_pencil_control_normal_pencil_clicked"]
+[connection signal="pressed" from="TestHTTPButton" to="TestHTTPButton" method="_on_pressed"]
+[connection signal="body_entered" from="ObjectiveArea" to="." method="_on_objective_area_body_entered"]

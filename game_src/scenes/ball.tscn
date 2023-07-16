@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://boncewt3ysok"]
+
+[ext_resource type="Script" path="res://Ball.gd" id="1_svn36"]
+[ext_resource type="Texture2D" uid="uid://bnl4ike8pqc2b" path="res://assets/textures/ball_red_large.png" id="2_6tt44"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dhx0a"]
+radius = 20.025
+
+[node name="Ball" type="RigidBody2D"]
+position = Vector2(428, 113)
+script = ExtResource("1_svn36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dhx0a")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 44.0
+offset_bottom = 44.0
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("2_6tt44")
+metadata/_edit_use_anchors_ = true

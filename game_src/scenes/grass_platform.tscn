@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkds0pqcbvt4c"]
+
+[ext_resource type="Texture2D" uid="uid://d514764h1ywx" path="res://assets/tiles/pixel_platformer/tile_0023.png" id="1_lhgl8"]
+[ext_resource type="Texture2D" uid="uid://b0j3da2yhegkp" path="res://assets/tiles/pixel_platformer/tile_0022.png" id="2_dn7gb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4fgdl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhad8"]
+size = Vector2(106.5, 18.5)
+
+[node name="GrassPlatform" type="StaticBody2D"]
+position = Vector2(162, 317)
+scale = Vector2(2, 2)
+physics_material_override = SubResource("PhysicsMaterial_4fgdl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-27.25, 0.25)
+shape = SubResource("RectangleShape2D_uhad8")
+debug_color = Color(0.996078, 0, 0.164706, 0.419608)
+
+[node name="End" type="Sprite2D" parent="."]
+position = Vector2(18, 0)
+texture = ExtResource("1_lhgl8")
+
+[node name="Body1" type="Sprite2D" parent="."]
+texture = ExtResource("2_dn7gb")
+
+[node name="Body2" type="Sprite2D" parent="."]
+position = Vector2(-18, 0)
+texture = ExtResource("2_dn7gb")
+
+[node name="Body3" type="Sprite2D" parent="."]
+position = Vector2(-36, 0)
+texture = ExtResource("2_dn7gb")
+
+[node name="Body4" type="Sprite2D" parent="."]
+position = Vector2(-54, 0)
+texture = ExtResource("2_dn7gb")
+
+[node name="Body5" type="Sprite2D" parent="."]
+position = Vector2(-72, 0)
+texture = ExtResource("2_dn7gb")

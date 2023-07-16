@@ -45,13 +45,16 @@ _data = {
 }
 
 [node name="SpringRoot" type="Node2D" groups=["Prop", "Serialisable", "SpringScene"]]
+process_mode = 3
 scale = Vector2(3, 3)
 script = ExtResource("1_5cdqg")
 
 [node name="SpringArea" type="Area2D" parent="."]
+process_mode = 3
 script = ExtResource("2_k478r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpringArea"]
+process_mode = 3
 position = Vector2(0, 3.83333)
 shape = SubResource("RectangleShape2D_bo4y8")
 

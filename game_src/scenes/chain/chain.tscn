@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyk7tdjjwesga"]
+
+[ext_resource type="Texture2D" uid="uid://cgl1fdvankgx8" path="res://assets/tiles/pixel_platformer_industrial/tile_0008.png" id="1_elp7h"]
+[ext_resource type="Script" path="res://scenes/chain/chain.gd" id="1_jp0fb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h8ium"]
+height = 28.0
+
+[node name="Chain" type="Node2D"]
+position = Vector2(251, 24)
+script = ExtResource("1_jp0fb")
+loops = 10
+
+[node name="Anchor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Anchor"]
+shape = SubResource("CapsuleShape2D_h8ium")
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_elp7h")

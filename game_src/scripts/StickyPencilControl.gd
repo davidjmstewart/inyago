@@ -1,13 +1,16 @@
-extends StaticBody2D
+extends Control
 
-var speed = 400
-var angular_speed = PI
-
+signal sticky_pencil_clicked
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#rotation += angular_speed * delta
+func _process(delta):
+	pass
+
+func _on_gui_input(event):
+	if event is InputEventMouseButton:
+		if (event.pressed):
+			sticky_pencil_clicked.emit()

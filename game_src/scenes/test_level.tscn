@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2ijsdlq4pu47"]
+
+[ext_resource type="Texture2D" uid="uid://dvlw2nsdvv6sb" path="res://assets/backgrounds/backgroundColorForest.png" id="1_4ksor"]
+[ext_resource type="PackedScene" uid="uid://dkds0pqcbvt4c" path="res://scenes/grass_platform.tscn" id="2_56iu3"]
+[ext_resource type="PackedScene" uid="uid://boncewt3ysok" path="res://scenes/ball.tscn" id="4_lkwjf"]
+[ext_resource type="PackedScene" uid="uid://l11vx11p2myj" path="res://scenes/trees/TreeTypeA.tscn" id="4_oe3fo"]
+[ext_resource type="Texture2D" uid="uid://spwwmu4fpv6c" path="res://assets/tiles/pixel_platformer/tile_0082.png" id="5_bkfi5"]
+[ext_resource type="Texture2D" uid="uid://ceh6kf16ey5au" path="res://assets/tiles/pixel_platformer/tile_0083.png" id="6_7w3v5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eoqkm"]
+bounce = 0.6
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1k4tw"]
+friction = 0.33
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggask"]
+size = Vector2(264, 43)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1155.0
+offset_bottom = 649.0
+texture = ExtResource("1_4ksor")
+
+[node name="GrassPlatform1" parent="." instance=ExtResource("2_56iu3")]
+
+[node name="GrassPlatform2" parent="." instance=ExtResource("2_56iu3")]
+position = Vector2(345, 471)
+
+[node name="GrassPlatform3" parent="." instance=ExtResource("2_56iu3")]
+position = Vector2(163, 629)
+
+[node name="Ball" parent="." instance=ExtResource("4_lkwjf")]
+position = Vector2(573, 119)
+physics_material_override = SubResource("PhysicsMaterial_eoqkm")
+
+[node name="Tree" parent="." instance=ExtResource("4_oe3fo")]
+position = Vector2(351, 435)
+scale = Vector2(2.5, 2.5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(44, 23)
+physics_material_override = SubResource("PhysicsMaterial_1k4tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(605, 168.5)
+shape = SubResource("RectangleShape2D_ggask")
+debug_color = Color(1, 0, 0.137255, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(670, 168)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_bkfi5")
+
+[node name="RightEnd" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(715, 168)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_7w3v5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(626, 168)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_bkfi5")
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(582, 168)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_bkfi5")
+
+[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(537, 168)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_bkfi5")
+
+[node name="LeftEnd" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(493, 168)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_7w3v5")
+flip_h = true

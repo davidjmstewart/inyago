@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://scenes/ObstacleScene.gd" id="1_r436i"]
 
 [node name="ObstacleScene" type="Node2D" groups=["ObstacleScene", "Serialisable"]]
+process_mode = 3
 script = ExtResource("1_r436i")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+process_mode = 3

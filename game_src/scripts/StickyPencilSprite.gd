@@ -1,7 +1,5 @@
-extends StaticBody2D
+extends Sprite2D
 
-var speed = 400
-var angular_speed = PI
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,5 +7,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#rotation += angular_speed * delta
+func _process(delta):
+	pass

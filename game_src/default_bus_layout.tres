@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://bqj21u821ysk8"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://csujukq1wrbv5"]
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_x5m2b"]
 resource_name = "Amplify"
@@ -11,6 +11,7 @@ release_ms = 110.0
 sidechain = &"SFX"
 
 [resource]
+bus/0/volume_db = -0.00828743
 bus/1/name = &"SFX"
 bus/1/solo = false
 bus/1/mute = false

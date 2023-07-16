@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://7dmlj4unxjk"]
+
+[ext_resource type="Texture2D" uid="uid://dnl00015qgcu6" path="res://assets/tiles/pixel_platformer_industrial/tile_0024.png" id="1_movy4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vrbe3"]
+radius = 8.0
+
+[node name="Loop" type="RigidBody2D"]
+position = Vector2(148, 57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_vrbe3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_movy4")
