@@ -1,9 +1,94 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca7qyrjf2y1yk"]
+[gd_scene load_steps=8 format=3 uid="uid://ca7qyrjf2y1yk"]
 
 [ext_resource type="Texture2D" uid="uid://cx7ohvil1ftjp" path="res://assets/tiles/pixel_platformer/tile_0072.png" id="1_d737y"]
 [ext_resource type="Texture2D" uid="uid://cndq26u4u4ksb" path="res://assets/tiles/pixel_platformer/tile_0032.png" id="2_vcupj"]
 [ext_resource type="Texture2D" uid="uid://b1mk8rb5tjhra" path="res://assets/tiles/pixel_platformer/tile_0012.png" id="3_kbnme"]
 [ext_resource type="Texture2D" uid="uid://brdxmtocth7cq" path="res://assets/tiles/pixel_platformer/tile_0015.png" id="4_olawo"]
+
+[sub_resource type="Animation" id="Animation_rkhgi"]
+resource_name = "mushroom-squeeze"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/TopHalf/Right:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/TopHalf/Left:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody2D/TopHalf:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_is15k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/TopHalf/Right:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/TopHalf/Left:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody2D/TopHalf:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bbgx5"]
+_data = {
+"RESET": SubResource("Animation_is15k"),
+"mushroom-squeeze": SubResource("Animation_rkhgi")
+}
 
 [node name="TreeTypeB" type="Node2D"]
 position = Vector2(207, 162)
@@ -16,19 +101,31 @@ polygon = PackedVector2Array(-9, 9, 9, 9, 4, 6, 4, -26, 7, -28, 26, -28, 26, -45
 [node name="Base" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("1_d737y")
 
-[node name="Body" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(0, -18)
-texture = ExtResource("2_vcupj")
+[node name="TopHalf" type="Node2D" parent="StaticBody2D"]
 
-[node name="Head" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(0, -36)
-texture = ExtResource("3_kbnme")
+[node name="Left" type="Node2D" parent="StaticBody2D/TopHalf"]
 
-[node name="Head2" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(18, -36)
-texture = ExtResource("4_olawo")
-
-[node name="Head3" type="Sprite2D" parent="StaticBody2D"]
+[node name="Head3" type="Sprite2D" parent="StaticBody2D/TopHalf/Left"]
 position = Vector2(-18, -36)
 texture = ExtResource("4_olawo")
 flip_h = true
+
+[node name="Right" type="Node2D" parent="StaticBody2D/TopHalf"]
+
+[node name="Head2" type="Sprite2D" parent="StaticBody2D/TopHalf/Right"]
+position = Vector2(18, -36)
+texture = ExtResource("4_olawo")
+
+[node name="Head" type="Sprite2D" parent="StaticBody2D/TopHalf"]
+position = Vector2(0, -36)
+texture = ExtResource("3_kbnme")
+
+[node name="Body" type="Sprite2D" parent="StaticBody2D/TopHalf"]
+position = Vector2(0, -18)
+texture = ExtResource("2_vcupj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "mushroom-squeeze"
+libraries = {
+"": SubResource("AnimationLibrary_bbgx5")
+}
