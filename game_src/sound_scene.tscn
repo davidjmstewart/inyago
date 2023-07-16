@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr771fotfwucw"]
+
+[ext_resource type="Script" path="res://sound_scene.gd" id="1_o1732"]
+[ext_resource type="AudioStream" uid="uid://pftirax4xk8j" path="res://assets/audio/music/mx_gameplay_main_loop.wav" id="1_tu4gg"]
+
+[node name="SoundScene" type="Node2D"]
+script = ExtResource("1_o1732")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_tu4gg")
+bus = &"Music"
